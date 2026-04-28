@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aritzá Salazar — Growth Lab. Estrategia, datos y sistemas para escalar tu negocio sin fugas. Diagnóstico estratégico de marketing y tech stack.">
+<title>Aritzá Salazar — Growth Lab · Estrategia, datos y sistemas para escalar</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════
+   BRAND SYSTEM — Aritzá Salazar / Growth Lab
+═══════════════════════════════════════════ */
+:root{
+    --cream:#F5EFE5;
+    --cream-2:#EFE6D6;
+    --paper:#FFFBF3;
+    --pink:#EC4899;
+    --pink-soft:#FBD3E1;
+    --pink-tint:#FDEBF2;
+    --pink-deep:#C9277A;
+    --ink:#2B2B2B;
+    --ink-2:#1A1A1A;
+    --ink-soft:#5A5A5A;
+    --line:rgba(43,43,43,0.10);
+    --line-2:rgba(43,43,43,0.18);
+    --shadow:0 20px 60px rgba(43,43,43,0.08);
+    --shadow-pink:0 24px 60px rgba(236,72,153,0.25);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,system-ui,sans-serif;
+    font-size:16px;line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+::selection{background:var(--pink);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.serif{font-family:'Fraunces',Georgia,serif;font-weight:700;letter-spacing:-0.02em;line-height:1.05}
+.mono{font-family:'JetBrains Mono',monospace;letter-spacing:0.02em}
+.eye{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--pink);font-weight:500}
+.eye-dark{color:var(--pink-soft)}
+
+/* ═══════════════════════════════════════════
+   SCROLL PROGRESS
+═══════════════════════════════════════════ */
+.scroll-bar{
+    position:fixed;top:0;left:0;height:3px;width:0;
+    background:linear-gradient(90deg,var(--pink),var(--pink-deep));
+    z-index:9999;transition:width 0.1s linear;
+}
+
+/* ═══════════════════════════════════════════
+   TICKER
+═══════════════════════════════════════════ */
+.ticker{
+    background:var(--ink);color:var(--cream);
+    padding:0.55rem 0;overflow:hidden;
+    position:relative;z-index:50;
+    border-bottom:1px solid var(--ink-2);
+}
+.ticker-track{
+    display:flex;gap:2.5rem;
+    animation:tk 30s linear infinite;
+    white-space:nowrap;will-change:transform;
+}
+.ticker-track span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;
+    flex-shrink:0;
+}
+.ticker-track .dot{color:var(--pink);opacity:0.9}
+@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(245,239,229,0.85);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color 0.4s,background 0.4s,padding 0.4s;
+    padding:1.1rem 2rem;
+    display:flex;align-items:center;justify-content:space-between;
+}
+nav.scrolled{border-color:var(--line);padding:0.85rem 2rem;background:rgba(245,239,229,0.95)}
+.brand{display:flex;align-items:center;gap:0.75rem;cursor:pointer}
+.brand-mark{width:34px;height:34px;display:block}
+.brand-name{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--ink);letter-spacing:-0.01em}
+.brand-sub{
+    font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;
+    text-transform:uppercase;color:var(--pink);background:var(--pink-tint);
+    padding:0.18rem 0.55rem;border-radius:4px;margin-left:0.4rem;
+}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--ink-soft);transition:color 0.3s;position:relative;
+}
+.nav-links a::after{
+    content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;
+    background:var(--pink);transform:scaleX(0);transform-origin:left;
+    transition:transform 0.3s ease;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.18em;
+    text-transform:uppercase;background:var(--ink);color:var(--cream);
+    padding:0.85rem 1.4rem;border-radius:50px;border:1px solid var(--ink);
+    transition:all 0.3s;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;
+}
+.nav-cta:hover{background:var(--pink);border-color:var(--pink);transform:translateY(-1px)}
+.nav-cta::before{content:'→';transition:transform 0.3s}
+.nav-cta:hover::before{transform:translateX(2px)}
+.menu-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:0.4rem;color:var(--ink)}
+@media(max-width:880px){
+    .nav-links{display:none}
+    .menu-toggle{display:block}
+}
+.mobile-menu{
+    position:fixed;top:0;right:0;bottom:0;width:80%;max-width:340px;
+    background:var(--ink);color:var(--cream);
+    transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    z-index:200;padding:5rem 2rem 2rem;display:flex;flex-direction:column;gap:1.4rem;
+}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{
+    font-family:'Fraunces',serif;font-size:1.6rem;color:var(--cream);
+    border-bottom:1px solid rgba(245,239,229,0.1);padding-bottom:0.8rem;
+}
+.mobile-menu a:hover{color:var(--pink)}
+.mobile-close{position:absolute;top:1.4rem;right:1.4rem;background:transparent;border:0;color:var(--cream);cursor:pointer;font-size:1.5rem}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+    position:relative;
+    padding:5rem 2rem 6rem;
+    overflow:hidden;
+    background:
+        radial-gradient(ellipse 80% 60% at 100% 30%,rgba(236,72,153,0.10) 0%,transparent 60%),
+        radial-gradient(ellipse 60% 40% at 0% 80%,rgba(236,72,153,0.06) 0%,transparent 60%),
+        var(--cream);
+}
+.hero::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:
+        linear-gradient(0deg,rgba(43,43,43,0.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(43,43,43,0.04) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask:radial-gradient(ellipse 90% 70% at 50% 40%,#000 30%,transparent 80%);
+    -webkit-mask:radial-gradient(ellipse 90% 70% at 50% 40%,#000 30%,transparent 80%);
+    opacity:0.6;
+}
+.hero-grid{
+    position:relative;z-index:2;
+    max-width:1280px;margin:0 auto;
+    display:grid;grid-template-columns:1.15fr 1fr;gap:4rem;align-items:center;
+}
+@media(max-width:1024px){.hero-grid{grid-template-columns:1fr;gap:2.5rem}}
+.hero-left{display:flex;flex-direction:column;gap:1.6rem}
+.hero-eye{display:inline-flex;align-items:center;gap:0.6rem;width:fit-content}
+.hero-eye .dot{width:6px;height:6px;background:var(--pink);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:0.5}}
+.hero-h{
+    font-family:'Fraunces',serif;font-weight:700;
+    font-size:clamp(2.4rem,5.8vw,4.6rem);
+    line-height:1;letter-spacing:-0.035em;color:var(--ink);
+}
+.hero-h em{font-style:italic;font-weight:400;color:var(--pink)}
+.hero-h u{text-decoration:none;background:linear-gradient(180deg,transparent 60%,var(--pink-soft) 60%);padding:0 0.1em}
+.hero-sub{
+    font-size:1.1rem;color:var(--ink-soft);line-height:1.65;max-width:540px;
+}
+.hero-meta{
+    display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;
+    padding:1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.meta-item{display:flex;flex-direction:column;gap:0.15rem}
+.meta-item .num{font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;color:var(--ink);line-height:1}
+.meta-item .lbl{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-soft)}
+.meta-sep{width:1px;height:34px;background:var(--line)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:0.8rem;margin-top:0.4rem}
+.btn{
+    display:inline-flex;align-items:center;gap:0.6rem;
+    padding:1.1rem 1.8rem;border-radius:60px;
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+    letter-spacing:0.18em;text-transform:uppercase;font-weight:500;
+    transition:all 0.35s cubic-bezier(0.16,1,0.3,1);cursor:pointer;border:1px solid transparent;
+}
+.btn-primary{background:var(--pink);color:#fff;border-color:var(--pink);box-shadow:var(--shadow-pink)}
+.btn-primary:hover{background:var(--pink-deep);border-color:var(--pink-deep);transform:translateY(-2px);box-shadow:0 30px 70px rgba(201,39,122,0.35)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);transform:translateY(-2px)}
+.btn-wa{background:#25D366;color:#fff;border-color:#25D366}
+.btn-wa:hover{background:#1da851;border-color:#1da851;transform:translateY(-2px)}
+.btn .arr{transition:transform 0.3s}
+.btn:hover .arr{transform:translateX(4px)}
+
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;min-height:540px}
+.photo-stage{position:relative;width:100%;max-width:520px}
+.photo-blob{
+    position:absolute;inset:8% 5% 0 5%;
+    background:linear-gradient(160deg,var(--pink) 0%,var(--pink-deep) 100%);
+    border-radius:50% 50% 48% 52% / 60% 55% 45% 40%;
+    filter:blur(0px);
+    animation:blob 14s ease-in-out infinite;
+}
+@keyframes blob{
+    0%,100%{border-radius:50% 50% 48% 52% / 60% 55% 45% 40%;transform:rotate(-2deg) scale(1)}
+    50%{border-radius:48% 52% 60% 40% / 50% 60% 40% 50%;transform:rotate(2deg) scale(1.02)}
+}
+.photo-frame{
+    position:relative;z-index:3;
+    width:100%;
+}
+.photo-frame img{
+    width:100%;height:auto;display:block;
+    filter:drop-shadow(0 30px 50px rgba(43,43,43,0.18));
+}
+/* Floating data chips */
+.chip{
+    position:absolute;z-index:5;
+    background:var(--paper);border:1px solid var(--line);
+    padding:0.7rem 1rem;border-radius:14px;
+    box-shadow:var(--shadow);
+    font-family:'JetBrains Mono',monospace;font-size:0.7rem;
+    display:flex;align-items:center;gap:0.6rem;
+    animation:float 6s ease-in-out infinite;
+}
+.chip strong{color:var(--ink);font-weight:700}
+.chip .ico{
+    width:22px;height:22px;background:var(--pink-tint);border-radius:6px;
+    display:flex;align-items:center;justify-content:center;color:var(--pink);font-size:0.85rem;
+}
+.chip-1{top:8%;left:-4%;animation-delay:0s}
+.chip-2{bottom:18%;left:-8%;animation-delay:1.5s}
+.chip-3{top:16%;right:-4%;animation-delay:3s}
+.chip-4{bottom:5%;right:-3%;animation-delay:2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ═══════════════════════════════════════════
+   STATS STRIP
+═══════════════════════════════════════════ */
+.stats-strip{
+    background:var(--ink);color:var(--cream);
+    padding:3rem 2rem;
+    border-top:1px solid var(--ink-2);border-bottom:1px solid var(--ink-2);
+}
+.stats-grid{
+    max-width:1280px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;
+}
+@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:2.5rem}}
+.stat{text-align:center;position:relative}
+.stat:not(:last-child)::after{
+    content:'';position:absolute;right:-1rem;top:20%;height:60%;width:1px;
+    background:rgba(245,239,229,0.12);
+}
+@media(max-width:768px){.stat::after{display:none!important}}
+.stat-num{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.4rem,5vw,3.6rem);color:var(--cream);line-height:1;letter-spacing:-0.03em}
+.stat-num span{color:var(--pink)}
+.stat-lbl{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,239,229,0.6);margin-top:0.6rem}
+
+/* ═══════════════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════════════ */
+section.s{
+    padding:7rem 2rem;
+    position:relative;
+}
+.s-inner{max-width:1280px;margin:0 auto;position:relative;z-index:2}
+.s-head{margin-bottom:4rem;max-width:780px}
+.s-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.s-head .eye{display:inline-block;margin-bottom:1.2rem}
+.s-h{
+    font-family:'Fraunces',serif;font-weight:700;
+    font-size:clamp(2rem,4.5vw,3.6rem);
+    line-height:1.05;letter-spacing:-0.03em;color:var(--ink);
+}
+.s-h em{color:var(--pink);font-style:italic;font-weight:400}
+.s-h u{text-decoration:none;background:linear-gradient(180deg,transparent 60%,var(--pink-soft) 60%);padding:0 0.1em}
+.s-sub{font-size:1.05rem;color:var(--ink-soft);line-height:1.7;margin-top:1.2rem}
+
+/* ═══════════════════════════════════════════
+   PROBLEMA — DARK
+═══════════════════════════════════════════ */
+.problema{background:var(--ink);color:var(--cream);position:relative;overflow:hidden}
+.problema::before{
+    content:'';position:absolute;inset:0;
+    background:
+        radial-gradient(ellipse 50% 40% at 80% 20%,rgba(236,72,153,0.12) 0%,transparent 60%),
+        radial-gradient(ellipse 40% 30% at 10% 90%,rgba(236,72,153,0.06) 0%,transparent 60%);
+    pointer-events:none;
+}
+.problema .s-h{color:var(--cream)}
+.problema .s-h em{color:var(--pink)}
+.problema .s-h u{background:linear-gradient(180deg,transparent 60%,rgba(236,72,153,0.4) 60%)}
+.problema .s-sub{color:rgba(245,239,229,0.7)}
+.problema .eye{color:var(--pink)}
+.problema-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;
+}
+@media(max-width:900px){.problema-grid{grid-template-columns:1fr;gap:3rem}}
+.problema-msg{
+    font-family:'Fraunces',serif;font-weight:700;font-style:italic;
+    font-size:clamp(1.8rem,3.5vw,2.6rem);
+    line-height:1.2;letter-spacing:-0.02em;color:var(--cream);
+    border-left:3px solid var(--pink);padding-left:1.6rem;
+}
+.bullets{display:grid;gap:1.2rem;margin-top:2rem}
+.bullet{
+    display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:start;
+    padding:1.4rem;border-radius:14px;
+    background:rgba(245,239,229,0.04);
+    border:1px solid rgba(245,239,229,0.08);
+    transition:all 0.35s ease;
+}
+.bullet:hover{background:rgba(236,72,153,0.06);border-color:rgba(236,72,153,0.3);transform:translateX(4px)}
+.bullet-ic{
+    width:36px;height:36px;border-radius:8px;
+    background:rgba(236,72,153,0.15);color:var(--pink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:700;flex-shrink:0;
+}
+.bullet-txt{font-size:0.98rem;color:rgba(245,239,229,0.85);line-height:1.6}
+
+/* ═══════════════════════════════════════════
+   DIFERENCIADOR — split with quote
+═══════════════════════════════════════════ */
+.dif{background:var(--cream)}
+.dif-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+@media(max-width:900px){.dif-grid{grid-template-columns:1fr;gap:2.5rem}}
+.dif-card{
+    background:var(--ink);color:var(--cream);
+    padding:3.5rem 3rem;border-radius:24px;
+    position:relative;overflow:hidden;
+    box-shadow:0 30px 70px rgba(43,43,43,0.18);
+}
+.dif-card::before{
+    content:'"';position:absolute;top:-3rem;left:1rem;
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:18rem;color:rgba(236,72,153,0.18);line-height:1;pointer-events:none;
+}
+.dif-card-eye{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--pink);margin-bottom:1.4rem;position:relative;z-index:1}
+.dif-card-quote{
+    font-family:'Fraunces',serif;font-weight:700;font-style:italic;
+    font-size:clamp(1.5rem,2.5vw,2rem);line-height:1.25;letter-spacing:-0.02em;
+    color:var(--cream);position:relative;z-index:1;
+}
+.dif-card-attrib{
+    margin-top:2rem;display:flex;align-items:center;gap:0.8rem;
+    border-top:1px solid rgba(245,239,229,0.12);padding-top:1.4rem;position:relative;z-index:1;
+}
+.dif-card-attrib .av{
+    width:38px;height:38px;border-radius:50%;background:var(--pink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1rem;
+}
+.dif-card-attrib .info{display:flex;flex-direction:column;line-height:1.2}
+.dif-card-attrib .nm{font-family:'Fraunces',serif;font-weight:600;color:var(--cream);font-size:0.95rem}
+.dif-card-attrib .ro{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,239,229,0.5);margin-top:0.15rem}
+
+/* ═══════════════════════════════════════════
+   PROMESA — checklist cards
+═══════════════════════════════════════════ */
+.promesa{background:var(--cream-2)}
+.promesa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:3rem}
+.promesa-item{
+    background:var(--paper);border:1px solid var(--line);
+    padding:1.8rem;border-radius:18px;
+    display:flex;flex-direction:column;gap:0.8rem;
+    transition:all 0.35s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;
+}
+.promesa-item::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--pink);transform:scaleX(0);transform-origin:left;
+    transition:transform 0.5s ease;
+}
+.promesa-item:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
+.promesa-item:hover::before{transform:scaleX(1)}
+.promesa-num{
+    font-family:'JetBrains Mono',monospace;font-size:0.7rem;
+    color:var(--pink);font-weight:700;letter-spacing:0.15em;
+}
+.promesa-item h4{
+    font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;
+    color:var(--ink);letter-spacing:-0.01em;line-height:1.3;
+}
+.promesa-check{
+    width:32px;height:32px;border-radius:8px;
+    background:var(--pink-tint);color:var(--pink);
+    display:flex;align-items:center;justify-content:center;font-weight:700;
+}
+
+/* ═══════════════════════════════════════════
+   METODOLOGÍA — 4 fases vertical timeline
+═══════════════════════════════════════════ */
+.metodo{background:var(--cream)}
+.fases{display:grid;gap:1.2rem;margin-top:3rem}
+.fase{
+    display:grid;grid-template-columns:120px 1fr auto;gap:2rem;align-items:start;
+    padding:2.4rem 2rem;border-radius:20px;
+    background:var(--paper);border:1px solid var(--line);
+    transition:all 0.4s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;
+}
+.fase::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:var(--pink);transform:scaleY(0);transform-origin:top;
+    transition:transform 0.6s ease;
+}
+.fase:hover{transform:translateX(6px);box-shadow:var(--shadow);border-color:transparent}
+.fase:hover::before{transform:scaleY(1)}
+.fase-num{
+    font-family:'Fraunces',serif;font-weight:700;font-style:italic;
+    font-size:4rem;color:var(--pink);line-height:0.9;letter-spacing:-0.05em;
+}
+.fase-body h3{
+    font-family:'Fraunces',serif;font-weight:700;font-size:1.6rem;
+    color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.4rem;line-height:1.2;
+}
+.fase-body .lead{color:var(--ink-soft);font-size:0.95rem;line-height:1.65;margin-bottom:1rem;max-width:580px}
+.fase-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.8rem}
+.fase-list li{
+    list-style:none;font-family:'JetBrains Mono',monospace;font-size:0.7rem;
+    background:var(--cream);padding:0.4rem 0.8rem;border-radius:6px;color:var(--ink-soft);
+    border:1px solid var(--line);
+}
+.fase-out{
+    background:var(--ink);color:var(--cream);padding:1rem 1.2rem;border-radius:12px;
+    max-width:200px;align-self:start;
+}
+.fase-out .lbl{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);margin-bottom:0.3rem}
+.fase-out .val{font-family:'Fraunces',serif;font-weight:600;font-size:0.9rem;line-height:1.3}
+@media(max-width:880px){
+    .fase{grid-template-columns:auto 1fr;gap:1.4rem}
+    .fase-out{grid-column:1/-1;max-width:none}
+    .fase-num{font-size:3rem}
+}
+
+/* ═══════════════════════════════════════════
+   ESPECIALIDADES — marquee + grid
+═══════════════════════════════════════════ */
+.espec{background:var(--ink);color:var(--cream);padding-top:4rem;padding-bottom:4rem;overflow:hidden}
+.marq{
+    display:flex;gap:3rem;
+    animation:tk 35s linear infinite;
+    white-space:nowrap;will-change:transform;
+    margin:2rem 0;
+}
+.marq span{
+    font-family:'Fraunces',serif;font-weight:700;font-style:italic;
+    font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-0.04em;
+    color:var(--cream);flex-shrink:0;
+    -webkit-text-stroke:1px var(--cream);color:transparent;
+}
+.marq span.fill{color:var(--pink);-webkit-text-stroke:0}
+.marq .sep{
+    -webkit-text-stroke:0;color:var(--pink);
+    font-family:'JetBrains Mono',monospace;font-size:1.5rem;align-self:center;font-style:normal;
+}
+.espec-grid{
+    max-width:1280px;margin:3rem auto 0;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;
+    background:rgba(245,239,229,0.12);border:1px solid rgba(245,239,229,0.12);
+    border-radius:18px;overflow:hidden;
+}
+.cap{
+    background:var(--ink);padding:2rem 1.6rem;
+    transition:background 0.3s;cursor:default;
+}
+.cap:hover{background:rgba(236,72,153,0.08)}
+.cap-ic{width:38px;height:38px;border-radius:10px;background:rgba(236,72,153,0.15);color:var(--pink);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1rem}
+.cap h4{font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;color:var(--cream);margin-bottom:0.4rem;letter-spacing:-0.01em}
+.cap p{font-size:0.85rem;color:rgba(245,239,229,0.6);line-height:1.55}
+
+/* ═══════════════════════════════════════════
+   HERRAMIENTAS — split with monoframe
+═══════════════════════════════════════════ */
+.tools{background:var(--cream)}
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+@media(max-width:900px){.tools-grid{grid-template-columns:1fr;gap:2.5rem}}
+.tools-frame{
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:18px;padding:1.8rem;font-family:'JetBrains Mono',monospace;
+    box-shadow:var(--shadow);position:relative;
+}
+.tools-frame::before{
+    content:'';position:absolute;top:1rem;left:1rem;display:flex;gap:6px;
+    width:36px;height:8px;
+    background:radial-gradient(circle,#ff5f56 4px,transparent 4px) 0 50%/12px no-repeat,
+               radial-gradient(circle,#ffbd2e 4px,transparent 4px) 12px 50%/12px no-repeat,
+               radial-gradient(circle,#27c93f 4px,transparent 4px) 24px 50%/12px no-repeat;
+}
+.tools-frame-head{
+    text-align:center;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--ink-soft);padding-bottom:1rem;border-bottom:1px dashed var(--line);margin:1rem 0;
+}
+.tools-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1rem}
+.tools-stack .tool{
+    background:var(--cream);border:1px solid var(--line);padding:0.7rem 0.5rem;
+    border-radius:8px;text-align:center;font-size:0.65rem;color:var(--ink-soft);
+    position:relative;
+}
+.tools-stack .tool.x{background:rgba(236,72,153,0.06);border-color:rgba(236,72,153,0.3);color:var(--pink-deep);text-decoration:line-through;opacity:0.7}
+.tools-stack .tool.kp{background:var(--pink);color:#fff;border-color:var(--pink);font-weight:700}
+.tools-bar{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;margin-top:1.4rem;padding-top:1.2rem;border-top:1px dashed var(--line);font-size:0.7rem;color:var(--ink-soft)}
+.tools-bar strong{color:var(--pink);font-size:1rem;font-weight:700}
+.tools-list{display:grid;gap:0.6rem;margin-top:1.5rem;margin-bottom:1.5rem}
+.tools-list li{
+    list-style:none;display:grid;grid-template-columns:auto 1fr;gap:0.8rem;align-items:start;
+    font-size:0.95rem;color:var(--ink-soft);
+}
+.tools-list .x{color:var(--pink);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:0.8rem}
+.tools-quote{
+    margin-top:2rem;padding:1.4rem 1.6rem;border-left:3px solid var(--pink);
+    background:var(--pink-tint);border-radius:0 12px 12px 0;
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--ink);line-height:1.4;
+}
+
+/* ═══════════════════════════════════════════
+   CASOS DE ESTUDIO
+═══════════════════════════════════════════ */
+.casos{background:var(--cream-2)}
+.casos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:3rem}
+@media(max-width:880px){.casos-grid{grid-template-columns:1fr}}
+.caso{
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:22px;padding:2.6rem 2.2rem;
+    transition:all 0.4s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;
+}
+.caso:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(43,43,43,0.10)}
+.caso-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.2rem;gap:1rem}
+.caso-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--pink);background:var(--pink-tint);padding:0.4rem 0.7rem;border-radius:6px}
+.caso-num{font-family:'Fraunces',serif;font-weight:700;font-size:2.4rem;color:var(--pink);line-height:1;font-style:italic}
+.caso h3{font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;color:var(--ink);letter-spacing:-0.02em;line-height:1.25;margin-bottom:1.4rem}
+.caso-block{margin-top:1.4rem}
+.caso-block .lbl{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:0.5rem}
+.caso-block ul{list-style:none;display:grid;gap:0.5rem}
+.caso-block ul li{font-size:0.92rem;color:var(--ink);line-height:1.55;padding-left:1.2rem;position:relative}
+.caso-block ul li::before{content:'';position:absolute;left:0;top:0.55rem;width:6px;height:6px;background:var(--pink);border-radius:50%}
+.caso-result{
+    margin-top:1.6rem;padding-top:1.4rem;border-top:1px dashed var(--line);
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;
+}
+.caso-result-item{
+    background:var(--ink);color:var(--cream);padding:0.9rem 0.8rem;border-radius:10px;text-align:center;
+}
+.caso-result-item .v{font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;color:var(--pink);line-height:1.1}
+.caso-result-item .k{font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,239,229,0.5);margin-top:0.25rem}
+.casos-note{
+    margin-top:2.4rem;text-align:center;
+    font-family:'Fraunces',serif;font-style:italic;font-size:0.95rem;color:var(--ink-soft);
+}
+
+/* ═══════════════════════════════════════════
+   SOBRE MÍ EXTENDIDO
+═══════════════════════════════════════════ */
+.sobre{background:var(--cream)}
+.sobre-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center}
+@media(max-width:900px){.sobre-grid{grid-template-columns:1fr;gap:3rem}}
+.sobre-photo{
+    position:relative;
+    background:linear-gradient(160deg,var(--pink-soft) 0%,var(--pink-tint) 100%);
+    border-radius:28px;padding:2rem 2rem 0;overflow:hidden;
+    box-shadow:0 30px 70px rgba(236,72,153,0.18);
+    aspect-ratio:4/5;display:flex;align-items:flex-end;
+}
+.sobre-photo::before{
+    content:'';position:absolute;inset:0;
+    background-image:
+        linear-gradient(0deg,transparent calc(100% - 1px),rgba(43,43,43,0.06) calc(100% - 1px)),
+        linear-gradient(90deg,transparent calc(100% - 1px),rgba(43,43,43,0.06) calc(100% - 1px));
+    background-size:30px 30px;pointer-events:none;
+}
+.sobre-photo img{position:relative;z-index:2;width:100%;height:auto;object-fit:contain}
+.sobre-badge{
+    position:absolute;top:1.6rem;left:1.6rem;
+    background:var(--ink);color:var(--cream);
+    padding:0.7rem 1rem;border-radius:50px;
+    font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+    letter-spacing:0.18em;text-transform:uppercase;
+    display:flex;align-items:center;gap:0.5rem;z-index:5;
+}
+.sobre-badge .led{width:6px;height:6px;background:#27c93f;border-radius:50%;box-shadow:0 0 8px #27c93f;animation:pulse 2s infinite}
+
+.sobre-content .s-h{font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:1.4rem}
+.sobre-bio{font-size:1.02rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.4rem}
+.sobre-bio strong{color:var(--ink);font-weight:600}
+.sobre-pillars{
+    display:grid;gap:0.8rem;margin:2rem 0;
+}
+.pillar{
+    display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;
+    padding:1.1rem 1.2rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;
+    transition:all 0.3s;
+}
+.pillar:hover{border-color:var(--pink);background:var(--pink-tint)}
+.pillar-tag{
+    font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+    background:var(--ink);color:var(--pink);padding:0.4rem 0.6rem;border-radius:6px;
+    letter-spacing:0.18em;text-transform:uppercase;font-weight:500;align-self:start;
+}
+.pillar p{font-size:0.92rem;color:var(--ink);line-height:1.55}
+.sobre-philosophy{
+    margin-top:2rem;padding:1.6rem;background:var(--ink);color:var(--cream);
+    border-radius:14px;font-family:'Fraunces',serif;font-style:italic;font-size:1rem;line-height:1.55;
+}
+.sobre-philosophy strong{color:var(--pink);font-weight:700;font-style:normal;font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.18em;display:block;margin-bottom:0.6rem;text-transform:uppercase}
+
+/* ═══════════════════════════════════════════
+   OFFERS (DIAGNÓSTICO + PROGRAMA)
+═══════════════════════════════════════════ */
+.offers{background:var(--cream-2)}
+.offers-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:3rem}
+@media(max-width:900px){.offers-grid{grid-template-columns:1fr}}
+.offer{
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:24px;padding:2.6rem 2.4rem;
+    display:flex;flex-direction:column;gap:1.2rem;
+    transition:all 0.4s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;
+}
+.offer:hover{transform:translateY(-4px);box-shadow:0 30px 70px rgba(43,43,43,0.10)}
+.offer.featured{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.offer.featured h3,.offer.featured p,.offer.featured li{color:var(--cream)}
+.offer-tag{
+    font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--pink);
+    align-self:flex-start;
+}
+.offer.featured .offer-tag{background:rgba(236,72,153,0.15);padding:0.4rem 0.8rem;border-radius:6px}
+.offer h3{font-family:'Fraunces',serif;font-weight:700;font-size:1.7rem;color:var(--ink);letter-spacing:-0.02em;line-height:1.2}
+.offer-desc{font-size:0.95rem;color:var(--ink-soft);line-height:1.6}
+.offer.featured .offer-desc{color:rgba(245,239,229,0.75)}
+.offer-list{list-style:none;display:grid;gap:0.6rem;margin-top:0.6rem}
+.offer-list li{
+    display:grid;grid-template-columns:auto 1fr;gap:0.7rem;align-items:start;
+    font-size:0.92rem;color:var(--ink);line-height:1.5;
+}
+.offer-list .ck{
+    width:18px;height:18px;border-radius:50%;background:var(--pink);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:0.15rem;
+}
+.offer-foot{
+    margin-top:1.6rem;padding-top:1.6rem;border-top:1px dashed var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.offer.featured .offer-foot{border-color:rgba(245,239,229,0.18)}
+.offer-foot .price-block{display:flex;flex-direction:column}
+.offer-foot .price-lbl{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-soft)}
+.offer.featured .offer-foot .price-lbl{color:rgba(245,239,229,0.55)}
+.offer-foot .price-val{font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;color:var(--ink);line-height:1}
+.offer.featured .offer-foot .price-val{color:var(--pink)}
+.offer-cta{
+    background:var(--pink);color:#fff;padding:0.9rem 1.4rem;border-radius:50px;
+    font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.3s;
+}
+.offer-cta:hover{background:var(--pink-deep);transform:translateY(-1px)}
+
+/* ═══════════════════════════════════════════
+   RECURSOS
+═══════════════════════════════════════════ */
+.recursos{background:var(--cream)}
+.recursos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem}
+@media(max-width:880px){.recursos-grid{grid-template-columns:1fr}}
+.recurso{
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:20px;padding:2rem;
+    display:flex;flex-direction:column;gap:1rem;
+    transition:all 0.4s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;
+}
+.recurso:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--pink)}
+.recurso-ic{
+    width:46px;height:46px;border-radius:12px;background:var(--pink-tint);color:var(--pink);
+    display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+}
+.recurso-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-soft)}
+.recurso h3{font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;color:var(--ink);letter-spacing:-0.01em;line-height:1.3}
+.recurso ul{list-style:none;display:grid;gap:0.45rem;margin:0.5rem 0 1rem}
+.recurso ul li{font-size:0.86rem;color:var(--ink-soft);padding-left:1rem;position:relative}
+.recurso ul li::before{content:'+';position:absolute;left:0;color:var(--pink);font-weight:700}
+.recurso-cta{
+    margin-top:auto;display:inline-flex;align-items:center;gap:0.5rem;
+    font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--pink);font-weight:600;cursor:pointer;
+}
+.recurso-cta:hover{color:var(--pink-deep)}
+.recurso-cta::after{content:'↓';transition:transform 0.3s}
+.recurso:hover .recurso-cta::after{transform:translateY(2px)}
+
+/* ═══════════════════════════════════════════
+   BLOG TOPICS
+═══════════════════════════════════════════ */
+.blog{background:var(--cream-2)}
+.blog-list{display:grid;gap:0;margin-top:3rem;border-top:1px solid var(--line)}
+.blog-item{
+    display:grid;grid-template-columns:80px 1fr auto;gap:2rem;align-items:center;
+    padding:1.6rem 0;border-bottom:1px solid var(--line);
+    cursor:pointer;transition:all 0.3s ease;
+}
+.blog-item:hover{padding-left:1rem;background:var(--cream)}
+.blog-num{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--ink-soft)}
+.blog-item h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.3rem;color:var(--ink);letter-spacing:-0.01em;transition:color 0.3s}
+.blog-item:hover h4{color:var(--pink)}
+.blog-item .read{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-soft);transition:color 0.3s}
+.blog-item:hover .read{color:var(--pink)}
+@media(max-width:600px){
+    .blog-item{grid-template-columns:50px 1fr}
+    .blog-item .read{display:none}
+    .blog-item h4{font-size:1.1rem}
+}
+
+/* ═══════════════════════════════════════════
+   CIERRE / FINAL CTA
+═══════════════════════════════════════════ */
+.cierre{
+    background:var(--ink);color:var(--cream);
+    padding:8rem 2rem;text-align:center;position:relative;overflow:hidden;
+}
+.cierre::before{
+    content:'';position:absolute;inset:0;
+    background:
+        radial-gradient(ellipse 60% 50% at 50% 0%,rgba(236,72,153,0.18) 0%,transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 100%,rgba(236,72,153,0.10) 0%,transparent 60%);
+    pointer-events:none;
+}
+.cierre::after{
+    content:'';position:absolute;inset:0;
+    background-image:
+        linear-gradient(0deg,rgba(245,239,229,0.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(245,239,229,0.025) 1px,transparent 1px);
+    background-size:60px 60px;pointer-events:none;
+}
+.cierre .inner{position:relative;z-index:2;max-width:880px;margin:0 auto}
+.cierre .eye{color:var(--pink);margin-bottom:1.6rem}
+.cierre h2{
+    font-family:'Fraunces',serif;font-weight:700;
+    font-size:clamp(2.4rem,6vw,5rem);line-height:1.05;letter-spacing:-0.035em;
+    color:var(--cream);margin-bottom:1.4rem;
+}
+.cierre h2 em{color:var(--pink);font-style:italic;font-weight:400}
+.cierre p{font-size:1.1rem;color:rgba(245,239,229,0.7);max-width:580px;margin:0 auto 2.5rem;line-height:1.65}
+.cierre .ctas{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{
+    background:var(--cream);color:var(--ink);
+    padding:4rem 2rem 2rem;border-top:1px solid var(--line);
+}
+.foot-grid{
+    max-width:1280px;margin:0 auto;
+    display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;
+}
+@media(max-width:800px){.foot-grid{grid-template-columns:1fr 1fr;gap:2.5rem}}
+.foot-col h5{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1.2rem;font-weight:700}
+.foot-col a{display:block;font-size:0.9rem;color:var(--ink);margin-bottom:0.6rem;transition:color 0.3s}
+.foot-col a:hover{color:var(--pink)}
+.foot-brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:1rem}
+.foot-tag{font-size:0.95rem;color:var(--ink-soft);max-width:300px;line-height:1.55}
+.foot-bottom{
+    max-width:1280px;margin:3rem auto 0;padding-top:1.5rem;
+    border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+    font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+    letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-soft);
+}
+.foot-social{display:flex;gap:0.6rem}
+.foot-social a{
+    width:34px;height:34px;border-radius:50%;border:1px solid var(--line-2);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink);transition:all 0.3s;
+}
+.foot-social a:hover{background:var(--pink);border-color:var(--pink);color:#fff;transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════
+   FLOATING WHATSAPP
+═══════════════════════════════════════════ */
+.fab{
+    position:fixed;bottom:24px;right:24px;z-index:90;
+    width:58px;height:58px;border-radius:50%;
+    background:#25D366;color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 30px rgba(37,211,102,0.35);
+    transition:all 0.3s;cursor:pointer;
+}
+.fab:hover{transform:scale(1.08);box-shadow:0 20px 40px rgba(37,211,102,0.45)}
+.fab::after{
+    content:'';position:absolute;inset:-6px;border-radius:50%;
+    border:2px solid #25D366;opacity:0.5;
+    animation:rip 2s ease-out infinite;
+}
+@keyframes rip{0%{transform:scale(1);opacity:0.5}100%{transform:scale(1.5);opacity:0}}
+
+/* ═══════════════════════════════════════════
+   REVEALS
+═══════════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:0.08s}
+.rv-d2{transition-delay:0.16s}
+.rv-d3{transition-delay:0.24s}
+.rv-d4{transition-delay:0.32s}
+.rv-d5{transition-delay:0.40s}
+.rv-d6{transition-delay:0.48s}
+
+/* ═══════════════════════════════════════════
+   GRAIN
+═══════════════════════════════════════════ */
+body::after{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
+    opacity:0.025;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:180px;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE TWEAKS
+═══════════════════════════════════════════ */
+@media(max-width:768px){
+    body{font-size:15px}
+    section.s{padding:4rem 1.2rem}
+    nav{padding:0.85rem 1.2rem}
+    .hero{padding:2.2rem 1.2rem 3rem}
+    .stats-strip{padding:2.4rem 1.2rem}
+    .cierre{padding:4.5rem 1.2rem}
+    footer{padding:3rem 1.2rem 1.5rem}
+    .dif-card{padding:2.2rem 1.5rem}
+    .fase{padding:1.6rem 1.2rem}
+
+    /* Nav: oculta el sub-tag para que no se amontone */
+    .brand-name{font-size:1rem}
+    .brand-sub{display:none}
+    .nav-cta{padding:0.7rem 1rem;font-size:0.65rem;letter-spacing:0.12em}
+
+    /* Ticker más compacto */
+    .ticker-track span{font-size:0.62rem;letter-spacing:0.16em}
+    .ticker-track{gap:1.6rem}
+
+    /* HERO: respiración y tipografía controlada */
+    .hero-grid{gap:2rem}
+    .hero-h{font-size:clamp(2.1rem,9vw,3rem);line-height:1.02}
+    .hero-sub{font-size:0.98rem;line-height:1.6}
+    .hero-meta{gap:1rem;padding:0.9rem 0}
+    .meta-item .num{font-size:1.15rem}
+    .meta-item .lbl{font-size:0.55rem;letter-spacing:0.16em}
+    .meta-sep{display:none}
+    .hero-cta{flex-direction:column;align-items:stretch;gap:0.6rem}
+    .hero-cta .btn{justify-content:center;padding:1rem 1.4rem;font-size:0.7rem;letter-spacing:0.14em}
+    .hero-eye{font-size:0.65rem;letter-spacing:0.16em}
+
+    /* Foto del hero: que no se desborde con los chips */
+    .hero-right{min-height:auto;padding:1rem 0}
+    .photo-stage{max-width:340px;margin:0 auto}
+    .chip{font-size:0.62rem;padding:0.5rem 0.7rem;border-radius:10px;gap:0.4rem}
+    .chip .ico{width:18px;height:18px;font-size:0.7rem}
+    .chip-1{top:4%;left:-2%}
+    .chip-2{bottom:14%;left:-4%}
+    .chip-3{top:8%;right:-2%}
+    .chip-4{bottom:2%;right:-2%}
+
+    /* Stats: 2x2 con separación generosa */
+    .stats-grid{gap:2rem 1rem}
+    .stat-num{font-size:2.2rem}
+    .stat-lbl{font-size:0.55rem;letter-spacing:0.16em;margin-top:0.4rem}
+
+    /* Section heads */
+    .s-head{margin-bottom:2.5rem}
+    .s-h{font-size:clamp(1.7rem,7vw,2.4rem)}
+    .s-sub{font-size:0.95rem;line-height:1.6;margin-top:0.9rem}
+    .eye{font-size:0.62rem;letter-spacing:0.14em}
+
+    /* Problema */
+    .problema-grid{gap:2rem}
+    .problema-msg{font-size:1.4rem;padding-left:1.1rem}
+    .bullet{padding:1rem 1.1rem;gap:0.8rem}
+    .bullet-ic{width:30px;height:30px;font-size:0.65rem}
+    .bullet-txt{font-size:0.92rem}
+
+    /* Diferenciador */
+    .dif-grid{gap:2rem}
+    .dif-card-quote{font-size:1.2rem;line-height:1.3}
+    .dif-card::before{font-size:11rem;top:-1.5rem}
+
+    /* Promesa */
+    .promesa-grid{grid-template-columns:1fr;gap:0.9rem;margin-top:2rem}
+    .promesa-item{padding:1.4rem 1.3rem}
+    .promesa-item h4{font-size:1rem;line-height:1.35}
+
+    /* Método - fases */
+    .fases{gap:0.9rem;margin-top:2rem}
+    .fase{grid-template-columns:auto 1fr;gap:1rem}
+    .fase-num{font-size:2.4rem}
+    .fase-body h3{font-size:1.25rem}
+    .fase-body .lead{font-size:0.9rem;line-height:1.55}
+    .fase-list li{font-size:0.62rem;padding:0.3rem 0.55rem}
+    .fase-out{padding:0.8rem 1rem}
+    .fase-out .val{font-size:0.82rem}
+    .fase-out .lbl{font-size:0.55rem}
+
+    /* Especialidades */
+    .espec{padding:3.5rem 0}
+    .espec > div:first-child{padding:0 1.2rem!important}
+    .marq{margin:1.5rem 0;gap:2rem}
+    .marq span{font-size:2.4rem}
+    .marq .sep{font-size:1.1rem}
+    .espec-grid{margin:2rem 1.2rem 0;border-radius:14px}
+    .cap{padding:1.5rem 1.2rem}
+    .cap h4{font-size:1rem}
+    .cap p{font-size:0.8rem;line-height:1.5}
+
+    /* Tools */
+    .tools-grid{gap:2rem}
+    .tools-frame{padding:1.4rem}
+    .tools-stack{grid-template-columns:repeat(3,1fr);gap:0.45rem}
+    .tools-stack .tool{font-size:0.58rem;padding:0.55rem 0.3rem}
+    .tools-bar{font-size:0.62rem;grid-template-columns:1fr;gap:0.5rem;text-align:center}
+    .tools-list li{font-size:0.9rem}
+    .tools-quote{font-size:1rem;padding:1.1rem 1.2rem}
+
+    /* Casos */
+    .casos-grid{gap:1rem;margin-top:2rem}
+    .caso{padding:2rem 1.5rem;border-radius:18px}
+    .caso h3{font-size:1.2rem;line-height:1.3}
+    .caso-num{font-size:2rem}
+    .caso-tag{font-size:0.58rem;padding:0.35rem 0.55rem}
+    .caso-block ul li{font-size:0.88rem}
+    .caso-result{grid-template-columns:repeat(3,1fr);gap:0.4rem}
+    .caso-result-item{padding:0.7rem 0.4rem}
+    .caso-result-item .v{font-size:0.95rem}
+    .caso-result-item .k{font-size:0.5rem}
+    .casos-note{font-size:0.88rem;margin-top:2rem;padding:0 0.5rem}
+
+    /* Sobre mí */
+    .sobre-grid{gap:2.5rem}
+    .sobre-photo{aspect-ratio:3/4;padding:1.5rem 1.5rem 0;border-radius:22px}
+    .sobre-badge{top:1rem;left:1rem;padding:0.5rem 0.8rem;font-size:0.55rem;letter-spacing:0.14em}
+    .sobre-bio{font-size:0.95rem;line-height:1.7}
+    .pillar{padding:1rem;gap:0.8rem}
+    .pillar-tag{font-size:0.58rem;padding:0.35rem 0.55rem}
+    .pillar p{font-size:0.88rem}
+    .sobre-philosophy{padding:1.3rem;font-size:0.92rem}
+
+    /* Offers */
+    .offers-grid{gap:1rem;margin-top:2rem}
+    .offer{padding:2rem 1.5rem;border-radius:20px}
+    .offer h3{font-size:1.35rem;line-height:1.25}
+    .offer-desc{font-size:0.9rem}
+    .offer-list li{font-size:0.88rem}
+    .offer-foot{flex-direction:column;align-items:flex-start;gap:1rem;padding-top:1.3rem}
+    .offer-cta{width:100%;justify-content:center;padding:0.95rem 1.2rem;font-size:0.65rem}
+
+    /* Recursos */
+    .recursos-grid{gap:1rem;margin-top:2rem}
+    .recurso{padding:1.6rem 1.4rem;border-radius:16px}
+    .recurso h3{font-size:1.1rem}
+    .recurso ul li{font-size:0.82rem}
+
+    /* Blog */
+    .blog .s-head{flex-direction:column;align-items:flex-start;gap:1rem}
+    .blog .s-head .btn{width:100%;justify-content:center}
+    .blog-list{margin-top:2rem}
+    .blog-item{grid-template-columns:auto 1fr;padding:1.2rem 0;gap:1rem}
+    .blog-item:hover{padding-left:0.4rem}
+    .blog-item h4{font-size:1rem;line-height:1.3}
+    .blog-item .read{display:none}
+    .blog-num{font-size:0.65rem}
+
+    /* Cierre */
+    .cierre h2{font-size:clamp(2rem,8vw,2.8rem);line-height:1.05}
+    .cierre p{font-size:0.95rem}
+    .cierre .ctas{flex-direction:column;align-items:stretch;gap:0.6rem}
+    .cierre .ctas .btn{justify-content:center;padding:1rem 1.4rem;font-size:0.7rem}
+
+    /* Footer */
+    .foot-grid{gap:2rem}
+    .foot-col h5{margin-bottom:0.9rem}
+    .foot-col a{font-size:0.85rem;margin-bottom:0.5rem}
+    .foot-bottom{flex-direction:column;text-align:center;gap:1.2rem;font-size:0.55rem;letter-spacing:0.14em}
+
+    /* FAB */
+    .fab{width:52px;height:52px;bottom:18px;right:18px}
+    .fab svg{width:22px;height:22px}
+}
+
+/* Pantallas extra-pequeñas */
+@media(max-width:420px){
+    .hero-h{font-size:2rem}
+    .s-h{font-size:1.6rem}
+    .stats-grid{grid-template-columns:1fr 1fr}
+    .photo-stage{max-width:280px}
+    .chip{display:none} /* en muy pequeñas, los chips se quitan para evitar amontonamiento */
+    .ticker{display:none}
+    .marq span{font-size:2rem}
+    .stat-num{font-size:1.9rem}
+    .meta-item .num{font-size:1.05rem}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- ════════════ TICKER ════════════ -->
+<div class="ticker">
+    <div class="ticker-track">
+        <span>El Algoritmo del Éxito</span><span class="dot">✦</span>
+        <span>Estrategia · Datos · Sistemas</span><span class="dot">✦</span>
+        <span>Growth Lab</span><span class="dot">✦</span>
+        <span>+10 años en Marketing Digital</span><span class="dot">✦</span>
+        <span>Paid Media · CRO · SEO</span><span class="dot">✦</span>
+        <span>El Algoritmo del Éxito</span><span class="dot">✦</span>
+        <span>Estrategia · Datos · Sistemas</span><span class="dot">✦</span>
+        <span>Growth Lab</span><span class="dot">✦</span>
+        <span>+10 años en Marketing Digital</span><span class="dot">✦</span>
+        <span>Paid Media · CRO · SEO</span><span class="dot">✦</span>
+    </div>
+</div>
+
+<!-- ════════════ NAV ════════════ -->
+<nav id="nav">
+    <a href="#top" class="brand" aria-label="Inicio">
+        <span><span class="brand-name">Aritzá Salazar</span><span class="brand-sub">Growth Lab</span></span>
+    </a>
+    <div class="nav-links">
+        <a href="#metodo">Método</a>
+        <a href="#casos">Casos</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#sobre">Sobre mí</a>
+        <a href="#blog">Blog</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.7rem">
+        <a href="#diagnostico" class="nav-cta">Agenda diagnóstico</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Cerrar">✕</button>
+    <a href="#metodo">Método</a>
+    <a href="#casos">Casos</a>
+    <a href="#recursos">Recursos</a>
+    <a href="#sobre">Sobre mí</a>
+    <a href="#blog">Blog</a>
+    <a href="#diagnostico" style="color:var(--pink)">Agenda diagnóstico →</a>
+</div>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="top">
+    <div class="hero-grid">
+        <div class="hero-left">
+            <div class="hero-eye eye"><span class="dot"></span> Estrategia · Datos · Sistemas</div>
+            <h1 class="hero-h">
+                Convierte tu negocio en un sistema de <em>crecimiento</em> <u>predecible</u> en 4 meses.
+            </h1>
+            <p class="hero-sub">
+                Estrategia, datos y dirección real. Sin agencias. Sin intermediarios. Sin desperdicio de inversión. Trabajo dentro de tu negocio para conectar lo que las herramientas, los reportes y los equipos no ven.
+            </p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <span class="num">+10</span>
+                    <span class="lbl">Años de experiencia</span>
+                </div>
+                <span class="meta-sep"></span>
+                <div class="meta-item">
+                    <span class="num">3</span>
+                    <span class="lbl">Pilares: Datos · Estrategia · Ejecución</span>
+                </div>
+                <span class="meta-sep"></span>
+                <div class="meta-item">
+                    <span class="num">4 meses</span>
+                    <span class="lbl">Para escalar tu sistema</span>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#diagnostico" class="btn btn-primary"><span class="arr">→</span> Agenda diagnóstico</a>
+                <a href="https://wa.me/525560515915?text=Hola%20Aritz%C3%A1%2C%20me%20gustar%C3%ADa%20agendar%20un%20diagn%C3%B3stico%20estrat%C3%A9gico." target="_blank" rel="noopener" class="btn btn-wa">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="photo-stage">
+                <div class="photo-blob"></div>
+                <div class="photo-frame">
+                    <img src="aritza.png" alt="Aritzá Salazar — Estratega y consultora de crecimiento">
+                </div>
+                <div class="chip chip-1"><span class="ico">▲</span> <span><strong>ROAS</strong> ↑ 2.4×</span></div>
+                <div class="chip chip-2"><span class="ico">◇</span> <span><strong>CAC</strong> ↓ 38%</span></div>
+                <div class="chip chip-3"><span class="ico">●</span> <span><strong>Funnel</strong> conectado</span></div>
+                <div class="chip chip-4"><span class="ico">→</span> <span><strong>Sistema</strong> escalable</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ STATS STRIP ════════════ -->
+<div class="stats-strip">
+    <div class="stats-grid">
+        <div class="stat">
+            <div class="stat-num"><span data-count="10">0</span>+</div>
+            <div class="stat-lbl">Años en Marketing Digital</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num"><span>4</span><span style="color:var(--pink)">M</span></div>
+            <div class="stat-lbl">Meses para tu sistema</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num"><span data-count="3">0</span></div>
+            <div class="stat-lbl">Pilares: Datos · Estrategia · Ejecución</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num"><span style="color:var(--pink)">∞</span></div>
+            <div class="stat-lbl">Oportunidades de optimización</div>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════ PROBLEMA ════════════ -->
+<section class="s problema" id="problema">
+    <div class="s-inner">
+        <div class="problema-grid">
+            <div class="rv">
+                <span class="eye">// El diagnóstico real</span>
+                <h2 class="s-h" style="margin-top:1.2rem">Tu marketing no está fallando por falta de <em>inversión.</em></h2>
+                <p class="s-sub">Está fallando porque nadie está conectando los datos con la estrategia. Puedes tener agencia, equipo y herramientas… pero si no hay claridad, alineación y dirección, el resultado es el mismo:</p>
+                <p class="problema-msg" style="margin-top:1.8rem">"Dinero perdido todos los días."</p>
+            </div>
+            <div class="rv rv-d2">
+                <span class="eye">// Síntomas frecuentes</span>
+                <div class="bullets">
+                    <div class="bullet"><span class="bullet-ic">01</span><p class="bullet-txt">Inviertes en marketing sin saber qué funciona realmente.</p></div>
+                    <div class="bullet"><span class="bullet-ic">02</span><p class="bullet-txt">Tu equipo ejecuta, pero no está alineado a objetivos claros.</p></div>
+                    <div class="bullet"><span class="bullet-ic">03</span><p class="bullet-txt">Tienes múltiples herramientas sin impacto real.</p></div>
+                    <div class="bullet"><span class="bullet-ic">04</span><p class="bullet-txt">No entiendes dónde se están generando (o perdiendo) los resultados.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ DIFERENCIADOR ════════════ -->
+<section class="s dif">
+    <div class="s-inner">
+        <div class="dif-grid">
+            <div class="rv">
+                <span class="eye">// Diferenciador</span>
+                <h2 class="s-h" style="margin-top:1.2rem">No soy una agencia. Soy <em>parte</em> de tu negocio.</h2>
+                <p class="s-sub">No trabajo con estrategias genéricas ni reportes vacíos. Me involucro en tu operación, entiendo a tu equipo y detecto exactamente dónde estás perdiendo dinero. Trabajo contigo como una pieza estratégica que conecta <strong>datos, marketing y ejecución</strong> para generar resultados reales.</p>
+            </div>
+            <div class="rv rv-d2 dif-card">
+                <p class="dif-card-eye">// Manifiesto</p>
+                <p class="dif-card-quote">"No agrego más herramientas. No multiplico reportes. Me involucro hasta entender dónde se está fugando el dinero — y construyo el sistema que lo detiene."</p>
+                <div class="dif-card-attrib">
+                    <span class="av">A</span>
+                    <div class="info">
+                        <span class="nm">Aritzá Salazar</span>
+                        <span class="ro">Growth Lab · Founder</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ PROMESA ════════════ -->
+<section class="s promesa">
+    <div class="s-inner">
+        <div class="s-head center rv">
+            <span class="eye">// Lo que vas a lograr</span>
+            <h2 class="s-h" style="margin-top:1.2rem">Esto es lo que puedes lograr <em>en 4 meses.</em></h2>
+            <p class="s-sub">Cinco transformaciones medibles dentro de tu negocio. No promesas vacías — resultados conectados a tus métricas.</p>
+        </div>
+        <div class="promesa-grid">
+            <div class="promesa-item rv">
+                <div class="promesa-check">✓</div>
+                <span class="promesa-num">[01]</span>
+                <h4>Claridad total de tu negocio basada en datos.</h4>
+            </div>
+            <div class="promesa-item rv rv-d1">
+                <div class="promesa-check">✓</div>
+                <span class="promesa-num">[02]</span>
+                <h4>Eliminación de fugas de dinero.</h4>
+            </div>
+            <div class="promesa-item rv rv-d2">
+                <div class="promesa-check">✓</div>
+                <span class="promesa-num">[03]</span>
+                <h4>Un equipo alineado a objetivos reales.</h4>
+            </div>
+            <div class="promesa-item rv rv-d3">
+                <div class="promesa-check">✓</div>
+                <span class="promesa-num">[04]</span>
+                <h4>Estrategias que convierten.</h4>
+            </div>
+            <div class="promesa-item rv rv-d4">
+                <div class="promesa-check">✓</div>
+                <span class="promesa-num">[05]</span>
+                <h4>Un sistema funcional que genera resultados constantes.</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ MÉTODO ════════════ -->
+<section class="s metodo" id="metodo">
+    <div class="s-inner">
+        <div class="s-head rv">
+            <span class="eye">// Método</span>
+            <h2 class="s-h" style="margin-top:1.2rem">Cómo convierto tu marketing en un <em>sistema predecible.</em></h2>
+            <p class="s-sub">Un proceso estructurado para entender, corregir y escalar tu negocio sin suposiciones. No ejecuto por ejecutar. Primero entiendo, después estructuro y finalmente escalo.</p>
+        </div>
+        <div class="fases">
+            <div class="fase rv">
+                <span class="fase-num">01</span>
+                <div class="fase-body">
+                    <h3>Diagnóstico 360°</h3>
+                    <p class="lead">Antes de hacer cualquier cambio, analizo tu negocio a profundidad. No solo campañas — todo el sistema. El objetivo es detectar todas las fugas de dinero y puntos de fricción.</p>
+                    <ul class="fase-list">
+                        <li>Funnel completo</li><li>Canales de tráfico</li><li>CAC · ROAS · Conv.</li><li>Estructura campañas</li><li>Stack tecnológico</li><li>Equipo y roles</li>
+                    </ul>
+                </div>
+                <div class="fase-out">
+                    <div class="lbl">Output</div>
+                    <div class="val">Mapa completo de fugas y oportunidades</div>
+                </div>
+            </div>
+            <div class="fase rv rv-d1">
+                <span class="fase-num">02</span>
+                <div class="fase-body">
+                    <h3>Estrategia personalizada</h3>
+                    <p class="lead">Con base en el diagnóstico, construyo una estrategia completamente adaptada a tu negocio. No uso plantillas. No aplico fórmulas genéricas. Defino prioridades reales, canales correctos y objetivos claros.</p>
+                    <ul class="fase-list">
+                        <li>Prioridades reales</li><li>Canales correctos</li><li>Estructura de campañas</li><li>Stack eficiente</li><li>KPIs por horizonte</li>
+                    </ul>
+                </div>
+                <div class="fase-out">
+                    <div class="lbl">Output</div>
+                    <div class="val">Plan accionable enfocado en resultados</div>
+                </div>
+            </div>
+            <div class="fase rv rv-d2">
+                <span class="fase-num">03</span>
+                <div class="fase-body">
+                    <h3>Implementación y liderazgo</h3>
+                    <p class="lead">No solo estrategia. Dirección real. Trabajo directamente con tu equipo. Alineo procesos, elimino fricción y aseguro que la ejecución esté conectada con la estrategia.</p>
+                    <ul class="fase-list">
+                        <li>Alineación equipo</li><li>Definición de roles</li><li>Metodologías</li><li>Optimización procesos</li><li>Feedback continuo</li>
+                    </ul>
+                </div>
+                <div class="fase-out">
+                    <div class="lbl">Output</div>
+                    <div class="val">Equipo alineado y operación conectada</div>
+                </div>
+            </div>
+            <div class="fase rv rv-d3">
+                <span class="fase-num">04</span>
+                <div class="fase-body">
+                    <h3>Sistema escalable</h3>
+                    <p class="lead">Una vez que el sistema funciona, el siguiente paso es escalar. Pero escalar sin estructura solo multiplica errores. Optimizamos lo que funciona, eliminamos lo que no, y creamos procesos repetibles.</p>
+                    <ul class="fase-list">
+                        <li>Optimización continua</li><li>Procesos repetibles</li><li>Stack eficiente</li><li>Automatización</li><li>Escalabilidad real</li>
+                    </ul>
+                </div>
+                <div class="fase-out">
+                    <div class="lbl">Output</div>
+                    <div class="val">Negocio funcional y listo para crecer</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:3rem;text-align:center" class="rv">
+            <p style="font-family:'Fraunces',serif;font-style:italic;font-size:1.3rem;color:var(--ink);max-width:700px;margin:0 auto 1.6rem;line-height:1.4">Tu negocio deja de depender de suposiciones y empieza a operar con <span style="color:var(--pink)">claridad, estructura y dirección.</span></p>
+            <a href="#diagnostico" class="btn btn-primary"><span class="arr">→</span> Agenda tu diagnóstico estratégico</a>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ ESPECIALIDADES ════════════ -->
+<section class="s espec" id="especialidades" style="padding-top:5rem;padding-bottom:5rem">
+    <div style="max-width:1280px;margin:0 auto;padding:0 2rem" class="rv">
+        <span class="eye eye-dark">// Especialidades</span>
+        <h2 class="s-h" style="color:var(--cream);margin-top:1.2rem;max-width:720px">Trabajo donde se mueve el <em>dinero real</em> de tu negocio.</h2>
+    </div>
+    <div class="marq">
+        <span>Paid Media</span><span class="sep">✦</span>
+        <span class="fill">CRO</span><span class="sep">✦</span>
+        <span>SEO</span><span class="sep">✦</span>
+        <span>Funnel</span><span class="sep">✦</span>
+        <span class="fill">Lead Gen</span><span class="sep">✦</span>
+        <span>Data &amp; Analytics</span><span class="sep">✦</span>
+        <span>Paid Media</span><span class="sep">✦</span>
+        <span class="fill">CRO</span><span class="sep">✦</span>
+        <span>SEO</span><span class="sep">✦</span>
+        <span>Funnel</span><span class="sep">✦</span>
+        <span class="fill">Lead Gen</span><span class="sep">✦</span>
+        <span>Data &amp; Analytics</span><span class="sep">✦</span>
+    </div>
+    <div class="espec-grid">
+        <div class="cap"><div class="cap-ic">▲</div><h4>Paid Media</h4><p>Meta · Google · TikTok. Estructura, performance y eficiencia.</p></div>
+        <div class="cap"><div class="cap-ic">◆</div><h4>CRO</h4><p>Optimización de conversión basada en datos y comportamiento.</p></div>
+        <div class="cap"><div class="cap-ic">●</div><h4>SEO Estratégico</h4><p>Tráfico orgánico que vende, no solo posiciona.</p></div>
+        <div class="cap"><div class="cap-ic">→</div><h4>Funnel completo</h4><p>De adquisición a retención: cada etapa conectada.</p></div>
+        <div class="cap"><div class="cap-ic">◇</div><h4>Lead Generation</h4><p>Calidad &gt; Cantidad. Sistemas que califican.</p></div>
+        <div class="cap"><div class="cap-ic">∑</div><h4>Data &amp; Analytics</h4><p>Decisiones con números. Dashboards que importan.</p></div>
+    </div>
+</section>
+
+<!-- ════════════ HERRAMIENTAS ════════════ -->
+<section class="s tools">
+    <div class="s-inner">
+        <div class="tools-grid">
+            <div class="rv">
+                <span class="eye">// Tech Stack</span>
+                <h2 class="s-h" style="margin-top:1.2rem">Estás pagando herramientas que <em>no necesitas.</em></h2>
+                <p class="s-sub">Optimizo tu stack tecnológico para que cada herramienta trabaje a tu favor. La mayoría de los negocios tienen herramientas duplicadas, mal configuradas o subutilizadas.</p>
+                <ul class="tools-list">
+                    <li><span class="x">01</span> Auditoría de herramientas</li>
+                    <li><span class="x">02</span> Eliminación de plataformas innecesarias</li>
+                    <li><span class="x">03</span> Optimización y configuración</li>
+                    <li><span class="x">04</span> Capacitación de equipo</li>
+                </ul>
+                <p class="tools-quote">"No necesitas más herramientas. Necesitas usar mejor las correctas."</p>
+            </div>
+            <div class="rv rv-d2">
+                <div class="tools-frame">
+                    <div class="tools-frame-head">// stack-audit.json</div>
+                    <div class="tools-stack">
+                        <div class="tool kp">META</div>
+                        <div class="tool kp">GA4</div>
+                        <div class="tool x">Tool A</div>
+                        <div class="tool kp">GADS</div>
+                        <div class="tool x">Tool B</div>
+                        <div class="tool kp">GTM</div>
+                        <div class="tool x">Tool C</div>
+                        <div class="tool kp">CRM</div>
+                        <div class="tool kp">Hotjar</div>
+                        <div class="tool x">Tool D</div>
+                        <div class="tool kp">Looker</div>
+                        <div class="tool x">Tool E</div>
+                    </div>
+                    <div class="tools-bar">
+                        <div>Stack actual <strong>12</strong> · Recomendado <strong>7</strong></div>
+                        <div style="background:var(--ink);color:var(--pink);padding:0.4rem 0.7rem;border-radius:6px;font-size:0.65rem">↓ 42% costo</div>
+                    </div>
+                    <div style="margin-top:1.4rem;padding:1rem;background:var(--cream);border-radius:8px;font-size:0.7rem;color:var(--ink-soft);line-height:1.5">
+                        <span style="color:var(--pink);font-weight:700">// Resultado</span><br>
+                        Menos herramientas, más claridad, mejor rendimiento.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ CASOS ════════════ -->
+<section class="s casos" id="casos">
+    <div class="s-inner">
+        <div class="s-head center rv">
+            <span class="eye">// Casos de estudio</span>
+            <h2 class="s-h" style="margin-top:1.2rem">Resultados reales basados en <em>datos,</em> no en promesas.</h2>
+            <p class="s-sub">Cada negocio tiene problemas distintos. Pero la raíz casi siempre es la misma: falta de claridad, estructura y dirección.</p>
+        </div>
+        <div class="casos-grid">
+            <div class="caso rv">
+                <div class="caso-head">
+                    <span class="caso-tag">eCommerce</span>
+                    <span class="caso-num">01</span>
+                </div>
+                <h3>Inversión constante en ads sin crecimiento sostenido.</h3>
+                <div class="caso-block">
+                    <div class="lbl">// Problema</div>
+                    <ul><li>Alto CAC</li><li>ROAS inconsistente</li><li>Falta de claridad en datos</li></ul>
+                </div>
+                <div class="caso-block">
+                    <div class="lbl">// Diagnóstico</div>
+                    <ul><li>Mala estructura de campañas</li><li>Métricas mal interpretadas</li><li>Herramientas mal configuradas</li></ul>
+                </div>
+                <div class="caso-block">
+                    <div class="lbl">// Acción</div>
+                    <ul><li>Reestructuración del funnel</li><li>Redefinición de KPIs</li><li>Optimización de campañas</li></ul>
+                </div>
+                <div class="caso-result">
+                    <div class="caso-result-item"><div class="v">↓ CAC</div><div class="k">Reducción</div></div>
+                    <div class="caso-result-item"><div class="v">↑ ROAS</div><div class="k">Eficiencia</div></div>
+                    <div class="caso-result-item"><div class="v">≡</div><div class="k">Estabilidad</div></div>
+                </div>
+            </div>
+            <div class="caso rv rv-d2">
+                <div class="caso-head">
+                    <span class="caso-tag">B2B / Equipo + Agencia</span>
+                    <span class="caso-num">02</span>
+                </div>
+                <h3>Equipo interno + agencia, sin dirección estratégica.</h3>
+                <div class="caso-block">
+                    <div class="lbl">// Problema</div>
+                    <ul><li>Falta de dirección</li><li>Duplicidad de esfuerzos</li><li>Bajo rendimiento general</li></ul>
+                </div>
+                <div class="caso-block">
+                    <div class="lbl">// Diagnóstico</div>
+                    <ul><li>Desalineación entre equipo y objetivos</li><li>Falta de liderazgo estratégico</li></ul>
+                </div>
+                <div class="caso-block">
+                    <div class="lbl">// Acción</div>
+                    <ul><li>Reorganización de roles</li><li>Alineación a métricas claras</li><li>Definición de procesos</li></ul>
+                </div>
+                <div class="caso-result">
+                    <div class="caso-result-item"><div class="v">↑ Equipo</div><div class="k">Eficiencia</div></div>
+                    <div class="caso-result-item"><div class="v">↑ Decisión</div><div class="k">Mejor toma</div></div>
+                    <div class="caso-result-item"><div class="v">≡</div><div class="k">Consistencia</div></div>
+                </div>
+            </div>
+        </div>
+        <p class="casos-note rv">"Por confidencialidad, muchos proyectos no pueden mostrarse públicamente. El enfoque y los resultados se mantienen consistentes."</p>
+        <div style="text-align:center;margin-top:2rem" class="rv">
+            <a href="#diagnostico" class="btn btn-ghost"><span class="arr">→</span> Agenda diagnóstico y revisamos tu caso</a>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ SOBRE MÍ ════════════ -->
+<section class="s sobre" id="sobre">
+    <div class="s-inner">
+        <div class="sobre-grid">
+            <div class="rv sobre-photo">
+                <div class="sobre-badge"><span class="led"></span> Disponible</div>
+                <img src="aritza.png" alt="Aritzá Salazar — fundadora de Growth Lab">
+            </div>
+            <div class="sobre-content">
+                <span class="eye rv">// Sobre mí</span>
+                <h2 class="s-h rv rv-d1" style="margin-top:1.2rem">No soy una agencia. Soy la persona que entra a entender tu negocio <em>de verdad.</em></h2>
+                <p class="sobre-bio rv rv-d2">Soy <strong>Aritzá Salazar</strong>, ingeniera en informática con más de 10 años en marketing digital. Mi enfoque no es ejecutar campañas sin dirección — es entender cómo funciona tu negocio y construir un sistema que genere resultados reales.</p>
+                <p class="sobre-bio rv rv-d3">He trabajado con <strong>ecommerce, marcas de lujo</strong> y diferentes industrias, ayudando a identificar fallas, optimizar estrategias y estructurar equipos.</p>
+                <div class="sobre-pillars">
+                    <div class="pillar rv rv-d2"><span class="pillar-tag">01 · Datos</span><p>Todo parte de entender qué está pasando realmente.</p></div>
+                    <div class="pillar rv rv-d3"><span class="pillar-tag">02 · Estrategia</span><p>Definir qué hacer y qué no hacer.</p></div>
+                    <div class="pillar rv rv-d4"><span class="pillar-tag">03 · Ejecución</span><p>Alinear equipos y procesos para lograr resultados.</p></div>
+                </div>
+                <div class="sobre-philosophy rv rv-d3">
+                    <strong>// Filosofía</strong>
+                    No creo en soluciones genéricas. No creo en agregar más herramientas sin sentido. No creo en marketing sin dirección. Creo en sistemas claros, medibles y escalables.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ DIAGNÓSTICO + PROGRAMA ════════════ -->
+<section class="s offers" id="diagnostico">
+    <div class="s-inner">
+        <div class="s-head center rv">
+            <span class="eye">// Trabajemos juntos</span>
+            <h2 class="s-h" style="margin-top:1.2rem">Dos formas de empezar a <em>trabajar conmigo.</em></h2>
+            <p class="s-sub">Empieza con un diagnóstico claro o entra al programa completo de 4 meses. Tú decides la profundidad.</p>
+        </div>
+        <div class="offers-grid">
+            <div class="offer rv">
+                <span class="offer-tag">// Punto de entrada</span>
+                <h3>Diagnóstico Estratégico de Marketing y Tech Stack</h3>
+                <p class="offer-desc">Una sesión profunda donde reviso tu funnel, canales, herramientas y dónde se está fugando el dinero. Sales con un plan claro para escalar.</p>
+                <ul class="offer-list">
+                    <li><span class="ck">✓</span> Análisis de funnel completo</li>
+                    <li><span class="ck">✓</span> Auditoría de canales de adquisición</li>
+                    <li><span class="ck">✓</span> Revisión del stack tecnológico</li>
+                    <li><span class="ck">✓</span> Detección de fugas de dinero</li>
+                    <li><span class="ck">✓</span> Plan claro y accionable para escalar</li>
+                </ul>
+                <div class="offer-foot">
+                    <div class="price-block">
+                        <span class="price-lbl">Resultado</span>
+                        <span class="price-val">Plan claro para escalar</span>
+                    </div>
+                    <a href="https://wa.me/525560515915?text=Hola%20Aritz%C3%A1%2C%20me%20interesa%20solicitar%20el%20DIAGN%C3%93STICO%20ESTRAT%C3%89GICO%20de%20Marketing%20y%20Tech%20Stack.%20Quiero%20revisar%20mi%20funnel%2C%20canales%2C%20herramientas%20y%20detectar%20fugas%20de%20dinero%20para%20obtener%20un%20plan%20claro%20de%20escalamiento." target="_blank" rel="noopener" class="offer-cta">Solicitar diagnóstico →</a>
+                </div>
+            </div>
+            <div class="offer featured rv rv-d2">
+                <span class="offer-tag">// Programa completo · 4 meses</span>
+                <h3>Programa de Optimización y Escalamiento</h3>
+                <p class="offer-desc">El sistema completo. Cuatro meses dentro de tu negocio: diagnóstico, estrategia, alineación de equipo e implementación guiada. Te dejo un negocio listo para crecer.</p>
+                <ul class="offer-list">
+                    <li><span class="ck">✓</span> Diagnóstico 360° profundo</li>
+                    <li><span class="ck">✓</span> Estrategia personalizada</li>
+                    <li><span class="ck">✓</span> Alineación de equipo y procesos</li>
+                    <li><span class="ck">✓</span> Implementación guiada</li>
+                    <li><span class="ck">✓</span> Sistema escalable y documentado</li>
+                </ul>
+                <div class="offer-foot">
+                    <div class="price-block">
+                        <span class="price-lbl">Duración</span>
+                        <span class="price-val">4 meses · Acompañamiento directo</span>
+                    </div>
+                    <a href="https://wa.me/525560515915?text=Hola%20Aritz%C3%A1%2C%20quiero%20APLICAR%20al%20PROGRAMA%20de%20Optimizaci%C3%B3n%20y%20Escalamiento%20de%204%20meses.%20Me%20interesa%20el%20diagn%C3%B3stico%20360%C2%B0%2C%20la%20estrategia%20personalizada%2C%20la%20alineaci%C3%B3n%20de%20equipo%20e%20implementaci%C3%B3n%20guiada%20para%20construir%20un%20sistema%20escalable%20en%20mi%20negocio." target="_blank" rel="noopener" class="offer-cta">Aplicar al programa →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ RECURSOS ════════════ -->
+<section class="s recursos" id="recursos">
+    <div class="s-inner">
+        <div class="s-head center rv">
+            <span class="eye">// Recursos</span>
+            <h2 class="s-h" style="margin-top:1.2rem">Herramientas para entender qué está fallando en tu <em>marketing.</em></h2>
+            <p class="s-sub">Si tu marketing no está funcionando, necesitas claridad antes que más inversión. Estos recursos te ayudan a identificar problemas y oportunidades.</p>
+        </div>
+        <div class="recursos-grid">
+            <div class="recurso rv">
+                <div class="recurso-ic">✓</div>
+                <span class="recurso-tag">// Recurso 01 · Checklist</span>
+                <h3>Por qué tu eCommerce no está escalando</h3>
+                <ul>
+                    <li>Errores comunes</li>
+                    <li>Validación de funnel</li>
+                    <li>Métricas clave</li>
+                </ul>
+                <a href="#" class="recurso-cta">Descargar checklist</a>
+            </div>
+            <div class="recurso rv rv-d1">
+                <div class="recurso-ic">∑</div>
+                <span class="recurso-tag">// Recurso 02 · Plantilla</span>
+                <h3>Auditoría básica de marketing</h3>
+                <ul>
+                    <li>Revisión de canales</li>
+                    <li>Evaluación de campañas</li>
+                    <li>Diagnóstico inicial</li>
+                </ul>
+                <a href="#" class="recurso-cta">Descargar auditoría</a>
+            </div>
+            <div class="recurso rv rv-d2">
+                <div class="recurso-ic">▲</div>
+                <span class="recurso-tag">// Recurso 03 · Guía</span>
+                <h3>Cómo identificar fugas en tu inversión</h3>
+                <ul>
+                    <li>Dónde se pierde dinero</li>
+                    <li>Cómo detectarlo</li>
+                    <li>Qué hacer</li>
+                </ul>
+                <a href="#" class="recurso-cta">Descargar guía</a>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:3rem" class="rv">
+            <a href="#" class="btn btn-primary"><span class="arr">→</span> Accede a todos los recursos</a>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ BLOG ════════════ -->
+<section class="s blog" id="blog">
+    <div class="s-inner">
+        <div class="s-head rv" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem">
+            <div style="max-width:580px">
+                <span class="eye">// Blog · SEO</span>
+                <h2 class="s-h" style="margin-top:1.2rem">Lo que escribo cuando <em>no estoy</em> dentro de un negocio.</h2>
+            </div>
+            <a href="#" class="btn btn-ghost" style="align-self:center"><span class="arr">→</span> Ver todos los artículos</a>
+        </div>
+        <div class="blog-list">
+            <a class="blog-item rv">
+                <span class="blog-num">[01]</span>
+                <h4>Cómo bajar tu CAC sin recortar inversión</h4>
+                <span class="read">5 min · Paid Media</span>
+            </a>
+            <a class="blog-item rv">
+                <span class="blog-num">[02]</span>
+                <h4>Por qué tus ads no convierten (y no es el creativo)</h4>
+                <span class="read">7 min · CRO</span>
+            </a>
+            <a class="blog-item rv">
+                <span class="blog-num">[03]</span>
+                <h4>Errores comunes en marketing eCommerce que te están costando</h4>
+                <span class="read">8 min · eCommerce</span>
+            </a>
+            <a class="blog-item rv">
+                <span class="blog-num">[04]</span>
+                <h4>Cómo escalar campañas sin matar tu rentabilidad</h4>
+                <span class="read">6 min · Estrategia</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ CIERRE ════════════ -->
+<section class="cierre">
+    <div class="inner">
+        <span class="eye">// Última llamada</span>
+        <h2>Si tu negocio no está creciendo, hay <em>una razón.</em></h2>
+        <p>Encuéntrala antes de seguir invirtiendo a ciegas. Una llamada de diagnóstico no te compromete a nada — y te da claridad inmediata sobre dónde estás perdiendo dinero.</p>
+        <div class="ctas">
+            <a href="#" class="btn btn-primary" data-cal><span class="arr">→</span> Agenda diagnóstico</a>
+            <a href="https://wa.me/525560515915?text=Hola%20Aritz%C3%A1%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20agendar%20un%20diagn%C3%B3stico%20estrat%C3%A9gico." target="_blank" rel="noopener" class="btn btn-wa">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+                Hablar por WhatsApp
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+    <div class="foot-grid">
+        <div>
+            <div style="margin-bottom:1rem">
+                <div style="font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;letter-spacing:-0.02em">Aritzá Salazar</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--pink);letter-spacing:0.18em;text-transform:uppercase;margin-top:0.25rem">Growth Lab</div>
+            </div>
+            <p class="foot-tag">Estrategia, datos y sistemas para escalar tu negocio sin fugas. <em style="color:var(--pink)">El Algoritmo del Éxito.</em></p>
+        </div>
+        <div class="foot-col">
+            <h5>Sitio</h5>
+            <a href="#metodo">Método</a>
+            <a href="#casos">Casos</a>
+            <a href="#sobre">Sobre mí</a>
+            <a href="#blog">Blog</a>
+        </div>
+        <div class="foot-col">
+            <h5>Trabajemos</h5>
+            <a href="#diagnostico">Diagnóstico</a>
+            <a href="#diagnostico">Programa 4 meses</a>
+            <a href="#recursos">Recursos</a>
+        </div>
+        <div class="foot-col">
+            <h5>Contacto</h5>
+            <a href="mailto:hola@aritzasalazar.com">hola@aritzasalazar.com</a>
+            <a href="https://wa.me/525560515915" target="_blank" rel="noopener">+52 55 6051 5915</a>
+            <a href="#" data-cal>Agenda llamada</a>
+        </div>
+    </div>
+    <div class="foot-bottom">
+        <span>© 2026 · Aritzá Salazar · Growth Lab</span>
+        <div class="foot-social">
+            <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+            <a href="https://wa.me/525560515915" target="_blank" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg></a>
+        </div>
+        <span>Datos · Estrategia · Sistemas</span>
+    </div>
+</footer>
+
+<!-- FAB WhatsApp -->
+<a href="https://wa.me/525560515915?text=Hola%20Aritz%C3%A1%2C%20me%20interesa%20agendar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener" class="fab" aria-label="WhatsApp directo">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+</a>
+
+<script>
+/* Scroll progress */
+window.addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('scrollBar').style.width=sc+'%';
+    document.getElementById('nav').classList.toggle('scrolled',h.scrollTop>40);
+},{passive:true});
+
+/* Reveal on scroll */
+const rvObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rvObs.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
+
+/* Counter */
+const cntObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+        if(!e.isIntersecting)return;
+        e.target.querySelectorAll('[data-count]').forEach(n=>{
+            const t=+n.dataset.count;let c=0;
+            const step=()=>{c+=Math.ceil(t/30);if(c>=t){n.textContent=t;return}n.textContent=c;requestAnimationFrame(step)};step();
+        });
+        cntObs.unobserve(e.target);
+    });
+},{threshold:0.4});
+document.querySelectorAll('.stats-strip,.hero-meta').forEach(el=>cntObs.observe(el));
+
+/* Mobile menu */
+const mt=document.getElementById('menuToggle'),mm=document.getElementById('mobileMenu'),mc=document.getElementById('mobileClose');
+mt&&mt.addEventListener('click',()=>mm.classList.add('open'));
+mc&&mc.addEventListener('click',()=>mm.classList.remove('open'));
+mm&&mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+
+/* Calendly placeholder */
+document.querySelectorAll('[data-cal]').forEach(el=>{
+    el.addEventListener('click',e=>{
+        e.preventDefault();
+        // Reemplaza con tu link real de Calendly:
+        window.open('https://calendly.com/','_blank');
+    });
+});
+</script>
+</body>
+</html>
